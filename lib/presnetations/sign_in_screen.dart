@@ -33,9 +33,11 @@ class SignInScreen extends StatelessWidget {
         if (data.status == Status.loading) {
           return Center(child: CircularProgressIndicator(),
           );
-        }  else if (data.status == Status.noInternet) {
+        } else if (data.status == Status.noInternet) {
           return Material(child: Center(child: Text('No internet Connection')));
-        } else {
+        } else if (data.status == Status.failed){
+            return  Material(child: Center(child: Text('API Call Error')));
+        }else {
           return Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
