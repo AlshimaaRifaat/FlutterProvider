@@ -13,36 +13,29 @@ import '../models/sign_in_response.dart';
 
 
 class SignInViewModel extends ChangeNotifier {
-  Status _status = Status.none;
-
-  Status get status => _status;
 
   late SignInResponse _signInResponse;
 
   SignInResponse get signInResponse => _signInResponse;
 
+  bool loading= false;
+  bool isBack= false;
+
 
   Future<void> signIn(SignInBody body) async {
-    CommonUtil().checkInternetConnection().then((value) {
-      if (value) {
-        _status = Status.loading;
+        loading=true;
         notifyListeners();
 
         APICall().signIn(body).then((response) {
           _signInResponse =
               SignInResponse.fromJson(json.decode(response.body));
           if (_signInResponse.status == true) {
-            _status = Status.success;
-            notifyListeners();
-          } else {
-            _status = Status.failed;
+            isBack = true;
             notifyListeners();
           }
         });
-      } else {
-        _status = Status.noInternet;
-        notifyListeners();
-      }
-    });
+      loading = false;
+      notifyListeners();
+
   }
 }

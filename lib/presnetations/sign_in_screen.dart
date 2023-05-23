@@ -21,7 +21,7 @@ class SignInScreen extends StatelessWidget {
       SignInBody signInBody = SignInBody(email: email, password: password);
      var provider= Provider.of<SignInViewModel>(context,listen: false);
      await provider.signIn(signInBody);
-     if(provider.status == Status.success) {
+     if(provider.isBack ) {
        Navigator.push(context,
          MaterialPageRoute(builder: (context) => HomeScreen()),
        );
@@ -30,15 +30,10 @@ class SignInScreen extends StatelessWidget {
     }
     return  Scaffold(
       body: Consumer<SignInViewModel>(builder: (context,data,child) {
-        if (data.status == Status.loading) {
-          return Center(child: CircularProgressIndicator(),
-          );
-        } else if (data.status == Status.noInternet) {
-          return Material(child: Center(child: Text('No internet Connection')));
-        } else if (data.status == Status.failed){
-            return  Material(child: Center(child: Text('API Call Error')));
-        }else {
-          return Column(
+       return  data.loading  ?
+           Center(child: CircularProgressIndicator(),
+          )
+        : Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -89,7 +84,6 @@ class SignInScreen extends StatelessWidget {
 
             ],
           );
-        }
       }),
     );
   }
