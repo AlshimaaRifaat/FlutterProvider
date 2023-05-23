@@ -41,6 +41,7 @@ class SignInViewModel extends ChangeNotifier {
         });
       } else {
         _status = Status.noInternet;
+        notifyListeners();
       }
     });
   }
