@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_provider/presnetations/sign_in_screen.dart';
+import 'package:flutter_provider/view_model/register_viewmodel.dart';
 import 'package:flutter_provider/view_model/sign_in_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_)=>SignInViewModel()),
+    ChangeNotifierProvider(create: (_)=>RegisterViewModel()),
   ],
       child:const MyApp()));
 }

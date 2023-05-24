@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_provider/models/enum.dart';
+import 'package:flutter_provider/presnetations/register_screen.dart';
+import 'package:flutter_provider/utils/common_utils.dart';
+import 'package:flutter_provider/utils/enum.dart';
 import 'package:flutter_provider/models/sign_in_model.dart';
 import 'package:flutter_provider/presnetations/home_screen.dart';
 import 'package:flutter_provider/presnetations/widgets/app_text_field.dart';
@@ -22,11 +24,11 @@ class SignInScreen extends StatelessWidget {
      var provider= Provider.of<SignInViewModel>(context,listen: false);
      await provider.signIn(signInBody);
      if(provider.isBack ) {
+       CommonUtil().showErrorToast(provider.signInResponse.message ?? '');
        Navigator.push(context,
          MaterialPageRoute(builder: (context) => HomeScreen()),
        );
      }
-
     }
     return  Scaffold(
       body: Consumer<SignInViewModel>(builder: (context,data,child) {
@@ -78,6 +80,24 @@ class SignInScreen extends StatelessWidget {
                     color: Colors.brown[300],
                     borderRadius: BorderRadius.circular(15),
 
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+                  );
+                },
+
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: const Text('Don\'t have an account? , click here to create one',
+                    style: TextStyle(
+                        fontSize: 20),
                   ),
                 ),
               ),
