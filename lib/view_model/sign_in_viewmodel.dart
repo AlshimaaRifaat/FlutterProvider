@@ -35,7 +35,7 @@ class SignInViewModel extends ChangeNotifier {
             isBack = true;
             notifyListeners();
           }else{
-            CommonUtil().showErrorToast(_signInResponse.message ?? '');
+            CommonUtil().showToast(_signInResponse.message ?? '');
           }
         });
       loading = false;

@@ -37,7 +37,7 @@ class RegisterViewModel extends ChangeNotifier {
         isBack = true;
         notifyListeners();
       }else{
-        CommonUtil().showErrorToast(_registerResponse.message ?? '');
+        CommonUtil().showToast(_registerResponse.message ?? '');
       }
     });
     loading = false;

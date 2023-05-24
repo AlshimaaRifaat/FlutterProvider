@@ -31,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
       var provider= Provider.of<RegisterViewModel>(context,listen: false);
       await provider.register(registerBody);
       if(provider.isBack ) {
-        CommonUtil().showErrorToast(provider.registerResponse.message ?? '');
+        CommonUtil().showToast(provider.registerResponse.message ?? '');
         Navigator.push(context,
           MaterialPageRoute(builder: (context) => SignInScreen()),
         );

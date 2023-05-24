@@ -6,7 +6,7 @@ class CommonUtil {
   Future<bool> checkInternetConnection() async {
     return await InternetConnectionChecker().hasConnection;
   }
-   showErrorToast(String msg ){
+   showToast(String msg ){
      Fluttertoast.showToast(
          msg: msg ?? '',
          toastLength: Toast.LENGTH_SHORT,

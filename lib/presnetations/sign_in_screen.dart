@@ -24,7 +24,7 @@ class SignInScreen extends StatelessWidget {
      var provider= Provider.of<SignInViewModel>(context,listen: false);
      await provider.signIn(signInBody);
      if(provider.isBack ) {
-       CommonUtil().showErrorToast(provider.signInResponse.message ?? '');
+       CommonUtil().showToast(provider.signInResponse.message ?? '');
        Navigator.push(context,
          MaterialPageRoute(builder: (context) => HomeScreen()),
        );
